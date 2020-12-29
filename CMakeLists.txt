@@ -8,6 +8,14 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
 
 project(OSM_A_star_search)
 
+#sharon workaround
+set(io2d_DIR "D:/work/P0267_RefImpl-master/build/P0267_RefImpl/P0267_RefImpl/CMakeFiles/Export/lib/cmake/io2d")
+set(PC_CAIRO_INCLUDEDIR "D:/work/vcpkg-master/installed/x86-windows/include")
+set(PC_CAIRO_LIBDIR "D:/work/vcpkg-master/installed/x86-windows/lib")
+set(PC_CAIRO_LIBRARY_DIRS "D:/work/vcpkg-master/installed/x86-windows/debug/lib")
+SET(PC_GRAPHICSMAGICK_INCLUDE_DIRS "D:/work/vcpkg-master/installed/x86-windows/include")
+SET(PC_GRAPHICSMAGICK_LIBRARY_DIRS "D:/work/vcpkg-master/installed/x86-windows/lib")
+
 # Set library output path to /lib
 set(LIBRARY_OUTPUT_PATH "${CMAKE_SOURCE_DIR}/lib")
 

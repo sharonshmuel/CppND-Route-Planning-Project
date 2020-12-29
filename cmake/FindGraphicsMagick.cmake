@@ -10,6 +10,11 @@
 #   - GRAPHICSMAGICK_FOUND
 #
 
+#sharon workaround
+set(PC_GRAPHICSMAGICK_INCLUDE_DIRS "D:/work/vcpkg-master/installed/x86-windows/include")
+set(PC_GRAPHICSMAGICK_LIBRARY_DIRS "D:/work/vcpkg-master/installed/x86-windows/lib")
+set(GRAPHICSMAGICK_PATH "D:/work/vcpkg-master/installed/x86-windows")
+
 # Use pkg-config, if available, to help find the library
 find_package(PkgConfig)
 pkg_check_modules(PC_GRAPHICSMAGICK GraphicsMagick)

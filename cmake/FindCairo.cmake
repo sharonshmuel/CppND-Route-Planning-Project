@@ -28,25 +28,39 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+#sharon workaround
+set(PC_CAIRO_INCLUDEDIR "D:/work/vcpkg-master/installed/x86-windows/include")
+set(PC_CAIRO_LIBDIR "D:/work/vcpkg-master/installed/x86-windows/lib")
+set(PC_CAIRO_LIBRARY_DIRS "D:/work/vcpkg-master/installed/x86-windows/debug/lib")
+
+
+
 find_package(PkgConfig)
 pkg_check_modules(PC_CAIRO QUIET cairo)
 
+#sharon workaround
 find_path(CAIRO_INCLUDE_DIRS
     NAMES cairo.h
     HINTS ${PC_CAIRO_INCLUDEDIR}
           ${PC_CAIRO_INCLUDE_DIRS}
+	PATHS "D:/work/vcpkg-master/installed/x86-windows/include"
     PATH_SUFFIXES cairo
 )
 
+#sharon workaround
 find_library(CAIRO_LIBRARIES
     NAMES cairo
     HINTS ${PC_CAIRO_LIBDIR}
           ${PC_CAIRO_LIBRARY_DIRS}
+	PATHS "D:/work/vcpkg-master/installed/x86-windows/lib"
 )
+
+#sharon workaround
 find_library(CAIRO_LIBRARIES_DEBUG
     NAMES cairod
     HINTS ${PC_CAIRO_LIBDIR}
           ${PC_CAIRO_LIBRARY_DIRS}
+	PATHS "D:/work/vcpkg-master/installed/x86-windows/debug/lib"
 )
 
 if (CAIRO_INCLUDE_DIRS)
