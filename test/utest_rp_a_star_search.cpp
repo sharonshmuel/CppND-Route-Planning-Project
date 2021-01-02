@@ -68,8 +68,6 @@ TEST_F(RoutePlannerTest, TestCalculateHValue) {
     EXPECT_FLOAT_EQ(route_planner.CalculateHValue(mid_node), 0.58903033);
 }
 
-
-
 // Test the AddNeighbors method.
 bool NodesSame(RouteModel::Node* a, RouteModel::Node* b) { return a == b; }
 TEST_F(RoutePlannerTest, TestAddNeighbors) {
@@ -81,12 +79,31 @@ TEST_F(RoutePlannerTest, TestAddNeighbors) {
     auto neighbors = start_node->neighbors;
     EXPECT_EQ(neighbors.size(), 4);
 
+	std::vector<int> found_item;
     // Check results for each neighbor.
     for (int i = 0; i < neighbors.size(); i++) {
         EXPECT_PRED2(NodesSame, neighbors[i]->parent, start_node);
-        EXPECT_FLOAT_EQ(neighbors[i]->g_value, start_neighbor_g_vals[i]);
-        EXPECT_FLOAT_EQ(neighbors[i]->h_value, start_neighbor_h_vals[i]);
-        EXPECT_EQ(neighbors[i]->visited, true);
+		int index=-1;
+
+		bool found = false;
+
+		for (int j = 0; j < start_neighbor_g_vals.size(); j++) {
+			if ((neighbors[i]->h_value == start_neighbor_h_vals[j]) && (neighbors[j]->g_value == start_neighbor_g_vals[j])) {
+				std::vector<int>::iterator it = std::find(found_item.begin(), found_item.end(), j);
+				if (it == found_item.end()) {
+					found = true;
+					found_item.push_back(j);
+					index = j;
+					break;
+				}
+			}
+		}
+
+		if (found) {
+			EXPECT_FLOAT_EQ(neighbors[i]->g_value, start_neighbor_g_vals[index]);
+			EXPECT_FLOAT_EQ(neighbors[i]->h_value, start_neighbor_h_vals[index]);
+		}
+		EXPECT_EQ(neighbors[i]->visited, true);
     }
 }
 
